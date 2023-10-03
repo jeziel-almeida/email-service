@@ -1,4 +1,4 @@
-package com.challenge.emailservice.core;
+package com.challenge.emailservice.core.cases;
 
 public interface EmailSenderUseCase {
     

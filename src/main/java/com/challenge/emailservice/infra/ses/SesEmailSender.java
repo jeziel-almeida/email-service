@@ -15,10 +15,10 @@ import com.challenge.emailservice.core.exceptions.EmailServiceException;
 @Service
 public class SesEmailSender implements EmailSenderGateway {
 
-    private final AmazonSimpleEmailService amazonSimpleEmailService;
+    private final AmazonSimpleEmailService sesClient;
 
-    public SesEmailSender(AmazonSimpleEmailService amazonSimpleEmailService) {
-        this.amazonSimpleEmailService = amazonSimpleEmailService;
+    public SesEmailSender(AmazonSimpleEmailService sesClient) {
+        this.sesClient = sesClient;
     }
 
     @Override
@@ -32,7 +32,7 @@ public class SesEmailSender implements EmailSenderGateway {
             );
 
         try {
-            this.amazonSimpleEmailService.sendEmail(request);
+            sesClient.sendEmail(request);
         } catch (AmazonServiceException ex) {
             throw new EmailServiceException("Failure while sending email", ex);
         }

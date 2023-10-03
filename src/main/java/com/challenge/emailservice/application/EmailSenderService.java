@@ -3,7 +3,7 @@ package com.challenge.emailservice.application;
 import org.springframework.stereotype.Service;
 
 import com.challenge.emailservice.adapters.EmailSenderGateway;
-import com.challenge.emailservice.core.EmailSenderUseCase;
+import com.challenge.emailservice.core.cases.EmailSenderUseCase;
 
 @Service
 public class EmailSenderService implements EmailSenderUseCase {
