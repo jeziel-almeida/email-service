@@ -3,6 +3,7 @@ package com.challenge.emailservice.infra.ses;
 import org.springframework.stereotype.Service;
 
 import com.amazonaws.AmazonServiceException;
+import com.amazonaws.SdkClientException;
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailService;
 import com.amazonaws.services.simpleemail.model.Body;
 import com.amazonaws.services.simpleemail.model.Content;
@@ -33,8 +34,11 @@ public class SesEmailSender implements EmailSenderGateway {
 
         try {
             sesClient.sendEmail(request);
+
         } catch (AmazonServiceException ex) {
-            throw new EmailServiceException("Failure while sending email", ex);
+            throw new EmailServiceException("Failure while sending email with AmazonSES", ex);
+        } catch (SdkClientException ex) {
+            throw new EmailServiceException("Failure to execute HTTP request", ex);
         }
     }
     
