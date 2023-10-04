@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.challenge.emailservice.application.EmailSenderService;
 import com.challenge.emailservice.core.EmailRequest;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/email")
 public class EmailSenderController {
@@ -22,7 +24,7 @@ public class EmailSenderController {
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.OK)
-    public String sendEmail(@RequestBody EmailRequest request) {
+    public String sendEmail(@RequestBody @Valid EmailRequest request) {
         this.emailSenderService.sendEmail(request.to(), request.subject(), request.body());
         return "Email sent successfully";
     }

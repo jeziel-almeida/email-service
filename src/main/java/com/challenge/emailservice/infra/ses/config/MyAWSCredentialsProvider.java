@@ -1,4 +1,4 @@
-package com.challenge.emailservice.infra.config;
+package com.challenge.emailservice.infra.ses.config;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;

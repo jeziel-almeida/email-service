@@ -1,4 +1,4 @@
-package com.challenge.emailservice.infra.config;
+package com.challenge.emailservice.infra.ses.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
