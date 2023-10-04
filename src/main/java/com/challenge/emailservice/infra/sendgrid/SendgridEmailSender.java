@@ -22,7 +22,7 @@ public class SendgridEmailSender implements EmailSenderGateway {
     }
 
     @Override
-    public void sendEmail(String to, String subject, String body) throws EmailServiceException {
+    public void sendEmail(String to, String subject, String body) {
         
         Email from = new Email("jeziel.almeida16@gmail.com");
         String email_subject = subject;
