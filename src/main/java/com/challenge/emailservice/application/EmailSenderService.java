@@ -11,22 +11,24 @@ import com.challenge.emailservice.infra.ses.SesEmailSender;
 @Service
 public class EmailSenderService implements EmailSenderUseCase {
 
-    private final EmailSenderGateway emailSenderGateway1;
-    private final EmailSenderGateway emailSenderGateway2;
+    private final EmailSenderGateway sesEmailSender;
+    private final EmailSenderGateway sendgridEmailSender;
 
     public EmailSenderService(SesEmailSender sesEmailSender, SendgridEmailSender sendgridEmailSender) {
-        this.emailSenderGateway1 = sesEmailSender;
-        this.emailSenderGateway2 = sendgridEmailSender;
+        this.sesEmailSender = sesEmailSender;
+        this.sendgridEmailSender = sendgridEmailSender;
     }
     
     @Override
     public void sendEmail(String to, String subject, String body) {
         try {
-            this.emailSenderGateway1.sendEmail(to, subject, body);
 
+            this.sesEmailSender.sendEmail(to, subject, body);
+            
         } catch(EmailServiceException e) {       
             try {
-                this.emailSenderGateway2.sendEmail(to, subject, body);
+
+                this.sendgridEmailSender.sendEmail(to, subject, body);
 
             } catch(EmailServiceException e2) {
                 throw e2;
